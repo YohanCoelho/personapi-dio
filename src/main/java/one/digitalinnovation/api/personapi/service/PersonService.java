@@ -1,9 +1,11 @@
 package one.digitalinnovation.api.personapi.service;
 
+import one.digitalinnovation.api.personapi.Utils.MessageUtil;
 import one.digitalinnovation.api.personapi.dto.PersonDTO;
 import one.digitalinnovation.api.personapi.entity.Person;
 import one.digitalinnovation.api.personapi.mapper.PersonMapper;
 import one.digitalinnovation.api.personapi.repository.PersonRepository;
+import one.digitalinnovation.api.personapi.service.exceptions.PersonNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,7 +59,7 @@ public class PersonService {
     }
 
     public Person verifyIfExists(Long id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id).orElseThrow(() -> new PersonNotFoundException(MessageUtil.PERSON_NOT_FOUND));
     }
 
 }
