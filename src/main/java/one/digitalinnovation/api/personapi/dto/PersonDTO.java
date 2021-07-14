@@ -1,6 +1,7 @@
 package one.digitalinnovation.api.personapi.dto;
 
 import lombok.*;
+import one.digitalinnovation.api.personapi.Utils.MessageUtil;
 import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.Valid;
@@ -24,7 +25,7 @@ public class PersonDTO {
     @Size(min = 2, max = 100)
     private String lastName;
 
-    @NotEmpty
+    @NotEmpty(message = MessageUtil.CPF_EMPTY)
     @CPF
     private String cpf;
 
